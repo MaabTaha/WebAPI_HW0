@@ -1,0 +1,33 @@
+GET https://openlibrary.org/works/OL61215W.json     
+200                                                 # request was successful, server found the book
+192 ms                                              # Round Trip Time (RTT)
+
+Network                                             
+
+Request Headers
+User-Agent: PostmanRuntime/7.51.1                   # request is coming from Postman not a browser like Chrome
+Accept: */*                                         # client is willing to accept any content type in response (but we specified we want json in URL)
+Postman-Token: c2af11ca-1c19-43f2-a0da-d4c5a93beda4 # unique ID for this specific session, used to track the request in Postman’s internal logs
+Host: openlibrary.org                               # domain name being targeted
+Accept-Encoding: gzip, deflate, br                  # tells the server that Postman can "decompress" data
+Connection: keep-alive                              # requests that the underlying TCP connection stay open for future requests to avoid the "handshake" delay again
+
+Response Headers                                    
+Server: nginx/1.28.2                                # web server software is nginx, version is 1.28.2
+Date: Fri, 20 Feb 2026 18:39:22 GMT
+Content-Type: application/json                      # confirms that the data in the body is a JSON object
+Transfer-Encoding: chunked                          # server started sending the data before it knew the total size. It sends it in "chunks" rather than one massive block
+Connection: keep-alive
+access-control-allow-origin: *                      # tells the browser that any website (any origin) is allowed to access this resource (json data)
+                                                    # Use only for public resources, if the request includes credentials (like cookies or authentication) browsers 
+                                                    # will block it because '*' cannot be used with credentials.
+access-control-allow-method: GET, OPTIONS           # for cross-origin browser requests, only GET requests are allowed. OPTIONS is allowed so the browser can perform its permission check
+access-control-max-age: 86400                       # Tells the browser to cache the CORS preflight approval for 24 hours (86400 seconds),
+                                                    # so it does not need to send another OPTIONS request during that time
+x-ol-stats: "MC 2 0.001 TT 0 0.004"                 # custom performance metric header returned by the Open Library API, provides information regarding the latency, database hits, and processing time for a specific API request
+                                                    # MC refers to Memcached (a database caching system), 2 indicates the number of items fetched from the cache, 0.001 is the time in seconds taken to retrieve those items
+                                                    # TT stands for Total Time (or total response time), 0 indicates no issues or a specific error code (typically '0' means OK/no error), 0.004 is the total time in seconds taken to process the request
+Referrer-Policy: no-referrer-when-downgrade         # security instruction that tells browser NOT to send my URL information if it moves from a secure HTTPS site to an insecure HTTP site
+                                                    # this policy is less restrictive than modern standards
+Content-Encoding: gzip                              # server compressed the data using GZIP before sending. Postman unzipped it automatically
+Response Body
